@@ -42,3 +42,27 @@ input[type="text"] {
     border-radius: 5px;
     border: 1px solid #ccc;
 }
+
+.stat-card {
+  width: 60%;
+  margin: 20px auto;
+  padding: 15px 20px;
+  background-color: #111;
+  color: #fff;
+  border-left: 6px solid #d40000;
+  font-size: 1.1rem;
+  font-weight: bold;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.nav-link {
+  display: block;
+  text-align: center;
+  margin: 20px 0;
+  font-weight: bold;
+  color: #d40000;
+  text-decoration: none;
+}
+.nav-link:hover {
+  text-decoration: underline;
+}

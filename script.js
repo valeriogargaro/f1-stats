@@ -97,5 +97,15 @@ fetch('data/stats_piloti.json')
         <td>${p.pole}</td>
       `;
       tbody.appendChild(tr);
+    
+    const pilotaPiuVincente = stats.reduce((max, p) =>
+    p.vittorie > max.vittorie ? p : max
+    );
+
+    document.getElementById("record-vittorie").innerText =
+        `Pilota più vincente: ${pilotaPiuVincente.nome} (${pilotaPiuVincente.vittorie} vittorie)`;
+
+
+    console.log("Pilota più vincente:", pilotaPiuVincente.nome);
     });
   });
