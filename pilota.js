@@ -7,6 +7,34 @@ window.addEventListener('DOMContentLoaded', async () => {
     
     const pilota = piloti.find(p => p.id === id);
     if (!pilota) return alert("Pilota non trovato!");
+    const anni = [];
+    const punti = [];
+    pilota.team.forEach(stagione => {
+        anni.push(stagione.anno);
+        punti.push(stagione.punti);
+    });
+    const ctx = document.getElementById("graficoPilota");
+    
+    if (ctx) {
+        new Chart(ctx, {
+            type: "bar",
+            data: {
+                labels: anni,
+                datasets: [{
+                    label: "Punti per stagione",
+                    data: punti,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    }
 
     // Popola info generali
     document.getElementById('nome-pilota').textContent = `${pilota.nome} ${pilota.cognome}`;
@@ -24,3 +52,5 @@ window.addEventListener('DOMContentLoaded', async () => {
         tbody.appendChild(tr);
     });
 });
+
+
