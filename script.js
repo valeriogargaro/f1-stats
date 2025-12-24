@@ -81,3 +81,21 @@ function filtraPilota() {
         }
     }
 }
+
+fetch('data/stats_piloti.json')
+  .then(response => response.json())
+  .then(stats => {
+    const tbody = document.getElementById('tbody-stats-piloti');
+
+    stats.forEach(p => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${p.nome}</td>
+        <td>${p.titoli}</td>
+        <td>${p.vittorie}</td>
+        <td>${p.podi}</td>
+        <td>${p.pole}</td>
+      `;
+      tbody.appendChild(tr);
+    });
+  });
