@@ -3,13 +3,21 @@
     {"anno": 2023, "nome": "Max Verstappen", "team": "Red Bull Racing"},
     {"anno": 2022, "nome": "Max Verstappen", "team": "Red Bull Racing"},
     {"anno": 2021, "nome": "Max Verstappen", "team": "Red Bull Racing"},
-    {"anno": 2020, "nome": "Lewis Hamilton", "team": "Mercedes"}
+    {"anno": 2020, "nome": "Lewis Hamilton", "team": "Mercedes"},
+    {"anno": 2019, "nome": "Lewis Hamilton", "team": "Mercedes"},
+    {"anno": 2018, "nome": "Lewis Hamilton", "team": "Mercedes"},
+    {"anno": 2017, "nome": "Lewis Hamilton", "team": "Mercedes"},
+    {"anno": 2016, "nome": "Nico Rosberg", "team": "Mercedes"}
   ],
   "team": [
     {"anno": 2023, "team": "Red Bull Racing"},
     {"anno": 2022, "team": "Red Bull Racing"},
     {"anno": 2021, "team": "Mercedes"},
-    {"anno": 2020, "team": "Mercedes"}
+    {"anno": 2020, "team": "Mercedes"},
+    {"anno": 2019, "team": "Mercedes"},
+    {"anno": 2018, "team": "Mercedes"},
+    {"anno": 2017, "team": "Mercedes"},
+    {"anno": 2016, "team": "Mercedes"}
   ],
   "classifiche": [
     {"posizione": 1, "pilota": "Max Verstappen", "punti": 454},

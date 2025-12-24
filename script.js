@@ -4,7 +4,7 @@ async function caricaDati() {
     const data = await response.json();
 
     // Popola la tabella dei piloti
-    const tbodyPiloti = document.querySelector('#tbody-piloti');
+    const tbodyPiloti = document.getElementById('tbody-piloti');
     data.piloti.forEach(pilota => {
         const tr = document.createElement('tr');
         tr.innerHTML = `<td>${pilota.anno}</td><td>${pilota.nome}</td><td>${pilota.team}</td>`;
@@ -12,25 +12,26 @@ async function caricaDati() {
     });
 
     // Popola la tabella dei team
-    const tbodyTeam = document.querySelector('#tbody-team');
+    const tbodyTeam = document.getElementById('tbody-team');
     data.team.forEach(team => {
         const tr = document.createElement('tr');
         tr.innerHTML = `<td>${team.anno}</td><td>${team.team}</td>`;
         tbodyTeam.appendChild(tr);
     });
-
+    
     // Popola la classifica piloti
-const tbodyClassifica = document.querySelector('#tbody-classifica');
-data.classifiche.forEach(c => {
-    const tr = document.createElement('tr');
-    tr.innerHTML = `<td>${c.posizione}</td><td>${c.pilota}</td><td>${c.punti}</td>`;
-    tbodyClassifica.appendChild(tr);
-});
-
-}
+    const tbodyClassifica = document.getElementById('tbody-classifica');
+    data.classifiche.forEach(c => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td>${c.posizione}</td><td>${c.pilota}</td><td>${c.punti}</td>`;
+        tbodyClassifica.appendChild(tr);
+    });
+};
 
 // Chiama la funzione al caricamento della pagina
-window.addEventListener('DOMContentLoaded', caricaDati);
+window.addEventListener('DOMContentLoaded', () => {
+    caricaDati();
+});
 
 function ordinaTabella(tabellaId, colonnaIndex) {
     const table = document.getElementById(tabellaId);
@@ -68,9 +69,9 @@ function ordinaTabella(tabellaId, colonnaIndex) {
 }
 
 function filtraPilota() {
-    const input = document.getElementById("filtro-pilota");
+    const input = document.getElementById("filtro-pilota"); // input
     const filter = input.value.toUpperCase();
-    const table = document.getElementById("tbody-piloti");
+    const table = document.getElementById("tbody-piloti"); // tbody
     const rows = table.getElementsByTagName("tr");
 
     for (let i = 0; i < rows.length; i++) {

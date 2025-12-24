@@ -9,47 +9,64 @@
 <body>
     <h1>Benvenuti su F1 Stats!</h1>
     <p>Qui troverai statistiche, classifiche e informazioni sui piloti e team di Formula 1.</p>
-    <h2>Albo d'Oro Piloti</h2>
-<input type="text" id="filtro-pilota" placeholder="Filtra per pilota..." onkeyup="filtraPilota()">
-<table border="1">
-    <thead>
-        <tr>
-            <th onclick="ordinaTabella('tbody-piloti', 0)">Anno</th>
-            <th onclick="ordinaTabella('tbody-piloti', 1)">Pilota</th>
-            <th onclick="ordinaTabella('tbody-piloti', 2)">Team</th>
-        </tr>
-    </thead>
-    <tbody id="tbody-piloti">
-        <!-- i dati verranno inseriti da JavaScript -->
-    </tbody>
-</table>
 
-<h2>Albo d'Oro Team</h2>
-<table border="1">
-    <thead>
-        <tr>
-            <th onclick="ordinaTabella('tbody-team', 0)">Anno</th>
-            <th onclick="ordinaTabella('tbody-team', 1)">Team</th>
-        </tr>
-    </thead>
-    <tbody id="tbody-team">
-        <!-- i dati verranno inseriti da JavaScript -->
-    </tbody>
-</table>
+<!-- Filtro pilota centrato sopra le tabelle -->
+<div class="filtro">
+    <input type="text" id="filtro-pilota" placeholder="Filtra per pilota..." onkeyup="filtraPilota()">
+</div>
 
-<h2>Classifica Piloti 2023</h2>
-<table border="1">
-    <thead>
-        <tr>
-            <th>Posizione</th>
-            <th>Pilota</th>
-            <th>Punti</th>
-        </tr>
-    </thead>
-    <tbody id="tbody-classifica">
-        <!-- dati caricati da JS -->
-    </tbody>
-</table>
+<!-- Contenitore tabelle affiancate: Albo d'Oro Piloti e Team -->
+<div class="albo-d-oro-container">
+    <!-- Albo d'Oro Piloti -->
+    <div class="tabella">
+        <h2>Albo d'Oro Piloti</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th onclick="ordinaTabella('tbody-piloti', 0)">Anno</th>
+                    <th onclick="ordinaTabella('tbody-piloti', 1)">Pilota</th>
+                    <th onclick="ordinaTabella('tbody-piloti', 2)">Team</th>
+                </tr>
+            </thead>
+            <tbody id="tbody-piloti">
+                <!-- dati caricati da JS -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Albo d'Oro Team -->
+    <div class="tabella">
+        <h2>Albo d'Oro Team</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th onclick="ordinaTabella('tbody-team', 0)">Anno</th>
+                    <th onclick="ordinaTabella('tbody-team', 1)">Team</th>
+                </tr>
+            </thead>
+            <tbody id="tbody-team">
+                <!-- dati caricati da JS -->
+            </tbody>
+        </table>
+    </div>
+</div> <!-- chiusura albo-d-oro-container -->
+
+<!-- Classifica Piloti 2023 -->
+<div class="tabella">
+    <h2>Classifica Piloti 2023</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Posizione</th>
+                <th>Pilota</th>
+                <th>Punti</th>
+            </tr>
+        </thead>
+        <tbody id="tbody-classifica">
+            <!-- dati caricati da JS -->
+        </tbody>
+    </table>
+</div>
 
 <a href="stats.html" class="nav-link">Vai alle statistiche F1 →</a>
 
