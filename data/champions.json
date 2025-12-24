@@ -1,0 +1,19 @@
+{
+  "piloti": [
+    {"anno": 2023, "nome": "Max Verstappen", "team": "Red Bull Racing"},
+    {"anno": 2022, "nome": "Max Verstappen", "team": "Red Bull Racing"},
+    {"anno": 2021, "nome": "Max Verstappen", "team": "Red Bull Racing"},
+    {"anno": 2020, "nome": "Lewis Hamilton", "team": "Mercedes"}
+  ],
+  "team": [
+    {"anno": 2023, "team": "Red Bull Racing"},
+    {"anno": 2022, "team": "Red Bull Racing"},
+    {"anno": 2021, "team": "Mercedes"},
+    {"anno": 2020, "team": "Mercedes"}
+  ],
+  "classifiche": [
+    {"posizione": 1, "pilota": "Max Verstappen", "punti": 454},
+    {"posizione": 2, "pilota": "Lewis Hamilton", "punti": 387},
+    {"posizione": 3, "pilota": "Charles Leclerc", "punti": 314}
+  ]
+}

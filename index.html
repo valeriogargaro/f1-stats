@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>F1 Stats</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Benvenuti su F1 Stats!</h1>
+    <p>Qui troverai statistiche, classifiche e informazioni sui piloti e team di Formula 1.</p>
+    <h2>Albo d'Oro Piloti</h2>
+<input type="text" id="filtro-pilota" placeholder="Filtra per pilota..." onkeyup="filtraPilota()">
+<table border="1">
+    <thead>
+        <tr>
+            <th onclick="ordinaTabella('tbody-piloti', 0)">Anno</th>
+            <th onclick="ordinaTabella('tbody-piloti', 1)">Pilota</th>
+            <th onclick="ordinaTabella('tbody-piloti', 2)">Team</th>
+        </tr>
+    </thead>
+    <tbody id="tbody-piloti">
+        <!-- i dati verranno inseriti da JavaScript -->
+    </tbody>
+</table>
+
+<h2>Albo d'Oro Team</h2>
+<table border="1">
+    <thead>
+        <tr>
+            <th onclick="ordinaTabella('tbody-team', 0)">Anno</th>
+            <th onclick="ordinaTabella('tbody-team', 1)">Team</th>
+        </tr>
+    </thead>
+    <tbody id="tbody-team">
+        <!-- i dati verranno inseriti da JavaScript -->
+    </tbody>
+</table>
+
+<h2>Classifica Piloti 2023</h2>
+<table border="1">
+    <thead>
+        <tr>
+            <th>Posizione</th>
+            <th>Pilota</th>
+            <th>Punti</th>
+        </tr>
+    </thead>
+    <tbody id="tbody-classifica">
+        <!-- dati caricati da JS -->
+    </tbody>
+</table>
+
+<script src="script.js"></script>
+
+
+</body>
+</html>
