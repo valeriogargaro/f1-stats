@@ -1,0 +1,34 @@
+[
+  {
+    "id": "nico_rosberg",
+    "pilota": "Nico Rosberg",
+    "nome": "Nico",
+    "cognome": "Rosberg",
+    "dataNascita": "1985-06-27",
+    "luogoNascita": "Wiesbaden, Germania",
+    "nazionalita": "Tedesca",
+    "team": [
+      {"anno": 2016, "team": "Mercedes", "posizione": 1, "punti": 385},
+      {"anno": 2015, "team": "Mercedes", "posizione": 2, "punti": 322}
+    ],
+    "podium": 57,
+    "gareVinte": 23,
+    "titoli": 1
+  },
+  {    
+    "id": "lewis_hamilton",
+    "pilota": "Lewis Hamilton",
+    "nome": "Lewis",
+    "cognome": "Hamilton",
+    "dataNascita": "1985-01-07",
+    "luogoNascita": "Stevenage, UK",
+    "nazionalita": "Britannica",
+    "team": [
+      {"anno": 2016, "team": "Mercedes", "posizione": 2, "punti": 380},
+      {"anno": 2015, "team": "Mercedes", "posizione": 1, "punti": 381}
+    ],
+    "podium": 155,
+    "gareVinte": 103,
+    "titoli": 7
+  }
+]

@@ -1,13 +1,13 @@
 {
   "piloti": [
-    {"anno": 2023, "nome": "Max Verstappen", "team": "Red Bull Racing"},
-    {"anno": 2022, "nome": "Max Verstappen", "team": "Red Bull Racing"},
-    {"anno": 2021, "nome": "Max Verstappen", "team": "Red Bull Racing"},
-    {"anno": 2020, "nome": "Lewis Hamilton", "team": "Mercedes"},
-    {"anno": 2019, "nome": "Lewis Hamilton", "team": "Mercedes"},
-    {"anno": 2018, "nome": "Lewis Hamilton", "team": "Mercedes"},
-    {"anno": 2017, "nome": "Lewis Hamilton", "team": "Mercedes"},
-    {"anno": 2016, "nome": "Nico Rosberg", "team": "Mercedes"}
+    {"anno": 2023, "pilota": "Max Verstappen", "pilotaId": "max_verstappen", "team": "Red Bull Racing"},
+    {"anno": 2022, "pilota": "Max Verstappen", "pilotaId": "max_verstappen", "team": "Red Bull Racing"},
+    {"anno": 2021, "pilota": "Max Verstappen", "pilotaId": "max_verstappen", "team": "Red Bull Racing"},
+    {"anno": 2020, "pilota": "Lewis Hamilton", "pilotaId": "lewis_hamilton", "team": "Mercedes"},
+    {"anno": 2019, "pilota": "Lewis Hamilton", "pilotaId": "lewis_hamilton", "team": "Mercedes"},
+    {"anno": 2018, "pilota": "Lewis Hamilton", "pilotaId": "lewis_hamilton", "team": "Mercedes"},
+    {"anno": 2017, "pilota": "Lewis Hamilton", "pilotaId": "lewis_hamilton", "team": "Mercedes"},
+    {"anno": 2016, "pilota": "Nico Rosberg",   "pilotaId": "nico_rosberg",   "team": "Mercedes"}
   ],
   "team": [
     {"anno": 2023, "team": "Red Bull Racing"},

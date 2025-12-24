@@ -4,12 +4,22 @@ async function caricaDati() {
     const data = await response.json();
 
     // Popola la tabella dei piloti
-    const tbodyPiloti = document.getElementById('tbody-piloti');
-    data.piloti.forEach(pilota => {
-        const tr = document.createElement('tr');
-        tr.innerHTML = `<td>${pilota.anno}</td><td>${pilota.nome}</td><td>${pilota.team}</td>`;
-        tbodyPiloti.appendChild(tr);
-    });
+    const tbodyPiloti = document.getElementById("tbody-piloti");
+    tbodyPiloti.innerHTML = "";
+
+    data.piloti.forEach(p => {
+    const tr = document.createElement("tr");
+    tr.innerHTML = 
+        `<td>${p.anno}</td>
+        <td>
+            <a href="pilota.html?id=${p.pilotaId}">
+                ${p.pilota}
+            </a>
+        </td>
+        <td>${p.team}</td>`;
+    tbodyPiloti.appendChild(tr);
+});
+
 
     // Popola la tabella dei team
     const tbodyTeam = document.getElementById('tbody-team');
