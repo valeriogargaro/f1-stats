@@ -6,6 +6,7 @@ async function caricaDati() {
     // Popola la tabella dei piloti
     const tbodyPiloti = document.getElementById("tbody-piloti");
     tbodyPiloti.innerHTML = "";
+    if (!tbodyPiloti) return;
 
     data.piloti.forEach(p => {
     const tr = document.createElement("tr");
@@ -23,6 +24,7 @@ async function caricaDati() {
 
     // Popola la tabella dei team
     const tbodyTeam = document.getElementById('tbody-team');
+    if (!tbodyTeam) return;
     data.team.forEach(team => {
         const tr = document.createElement('tr');
         tr.innerHTML = `<td>${team.anno}</td><td>${team.team}</td>`;
@@ -31,6 +33,7 @@ async function caricaDati() {
     
     // Popola la classifica piloti
     const tbodyClassifica = document.getElementById('tbody-classifica');
+    if (!tbodyClassifica) return;
     data.classifiche.forEach(c => {
         const tr = document.createElement('tr');
         tr.innerHTML = `<td>${c.posizione}</td><td>${c.pilota}</td><td>${c.punti}</td>`;
@@ -97,6 +100,7 @@ fetch('data/stats_piloti.json')
   .then(response => response.json())
   .then(stats => {
     const tbody = document.getElementById('tbody-stats-piloti');
+    if (!tbody) return;
 
     stats.forEach(p => {
       const tr = document.createElement('tr');

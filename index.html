@@ -5,10 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>F1 Stats</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:,">
 </head>
 <body>
-    <h1>Benvenuti su F1 Stats!</h1>
-    <p>Qui troverai statistiche, classifiche e informazioni sui piloti e team di Formula 1.</p>
+    <h1 id="main-title">Benvenuti su F1 Stats!</h1>
+    <p id="main-description">
+        Qui troverai statistiche, classifiche e informazioni sui piloti e team di Formula 1.
+    </p>
+
+<!-- Tendina lingua in alto a destra -->
+<div class="language-selector">
+  <select id="lang-select">
+    <option value="it">Italiano</option>
+    <option value="en">English</option>
+    <option value="es">Español</option>
+    <option value="fr">Français</option>
+    <option value="de">Deutsch</option>
+    <option value="pt">Português</option>
+    <option value="nl">Dutch</option>
+  </select>
+</div>
 
 <!-- Filtro pilota centrato sopra le tabelle -->
 <div class="filtro">
@@ -19,7 +35,7 @@
 <div class="albo-d-oro-container">
     <!-- Albo d'Oro Piloti -->
     <div class="tabella">
-        <h2>Albo d'Oro Piloti</h2>
+        <h2 id="albo-piloti-h2">Albo d’Oro Piloti</h2>
         <table>
             <thead>
                 <tr>
@@ -36,7 +52,7 @@
 
     <!-- Albo d'Oro Team -->
     <div class="tabella">
-        <h2>Albo d'Oro Team</h2>
+        <h2 id="albo-team-h2">Albo d’Oro Team</h2>
         <table>
             <thead>
                 <tr>
@@ -53,7 +69,7 @@
 
 <!-- Classifica Piloti 2023 -->
 <div class="tabella">
-    <h2>Classifica Piloti 2023</h2>
+    <h2 id="classifica-h2">Classifica Piloti 2023</h2>
     <table>
         <thead>
             <tr>
@@ -68,9 +84,12 @@
     </table>
 </div>
 
-<a href="stats.html" class="nav-link">Vai alle statistiche F1 →</a>
+<a id="stats-link" href="stats.html">
+  Vai alle statistiche F1 →
+</a>
 
-<script src="script.js"></script>
+<script src="script.js" defer></script>
+<script src="lang.js" defer></script>
 
 
 </body>
