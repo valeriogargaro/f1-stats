@@ -2,31 +2,60 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dettagli Pilota</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+    <script src="pilota.js" defer></script>
 </head>
 <body>
-    <h1 id="nome-pilota"></h1>
-    <p id="info-generali"></p>
+    <header>
+        <h1 id="pilota-nome">Dettagli Pilota</h1>
+    </header>
 
-    <h2>Statistiche F1</h2>
-    <table id="tabella-statistiche">
-        <thead>
-            <tr>
-                <th>Anno</th>
-                <th>Team</th>
-                <th>Posizione</th>
-                <th>Punti</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- dati popolati da JS -->
-        </tbody>
-    </table>
-    <canvas id="graficoPilota"></canvas>
+    <section id="info-pilota">
+        <p><strong>Data di nascita:</strong> <span id="pilota-dataNascita"></span></p>
+        <p><strong>Luogo di nascita:</strong> <span id="pilota-luogoNascita"></span></p>
+        <p><strong>Nazionalità:</strong> <span id="pilota-nazionalita"></span></p>
+    </section>
 
+    <section id="statistiche-pilota">
+        <h2>Statistiche</h2>
+        <ul>
+            <li>Gare disputate: <span id="stat-gare"></span></li>
+            <li>Vittorie: <span id="stat-vittorie"></span></li>
+            <li>Podi: <span id="stat-podi"></span></li>
+            <li>Punti totali: <span id="stat-punti"></span></li>
+        </ul>
+        <canvas id="grafico-pilota" width="400" height="200"></canvas>
+    </section>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="pilota.js"></script>
+    <section id="filtri-gare">
+        <label for="filtro-gare">Filtra gare:</label>
+        <select id="filtro-gare">
+            <option value="tutte">Tutte</option>
+            <option value="vittorie">Solo vittorie</option>
+            <option value="podi">Solo podi</option>
+        </select>
+    </section>
+
+    <section id="gare-pilota">
+        <h2>Gare disputate</h2>
+        <table border="1" id="tabella-gare">
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Gran Premio</th>
+                    <th>Circuito</th>
+                    <th>Team</th>
+                    <th>Posizione</th>
+                    <th>Punti</th>
+                </tr>
+            </thead>
+            <tbody id="tbody-gare-pilota">
+                <!-- Gare saranno inserite da JS -->
+            </tbody>
+        </table>
+    </section>
 </body>
 </html>

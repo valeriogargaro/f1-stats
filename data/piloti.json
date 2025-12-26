@@ -1,34 +1,24 @@
 [
-  {
-    "id": "nico_rosberg",
-    "pilota": "Nico Rosberg",
-    "nome": "Nico",
-    "cognome": "Rosberg",
-    "dataNascita": "1985-06-27",
-    "luogoNascita": "Wiesbaden, Germania",
-    "nazionalita": "Tedesca",
-    "team": [
-      {"anno": 2016, "team": "Mercedes", "posizione": 1, "punti": 385},
-      {"anno": 2015, "team": "Mercedes", "posizione": 2, "punti": 322}
-    ],
-    "podium": 57,
-    "gareVinte": 23,
-    "titoli": 1
-  },
-  {    
-    "id": "lewis_hamilton",
-    "pilota": "Lewis Hamilton",
-    "nome": "Lewis",
-    "cognome": "Hamilton",
-    "dataNascita": "1985-01-07",
-    "luogoNascita": "Stevenage, UK",
-    "nazionalita": "Britannica",
-    "team": [
-      {"anno": 2016, "team": "Mercedes", "posizione": 2, "punti": 380},
-      {"anno": 2015, "team": "Mercedes", "posizione": 1, "punti": 381}
-    ],
-    "podium": 155,
-    "gareVinte": 103,
-    "titoli": 7
-  }
+  {"id": "nico_rosberg","nome": "Nico","cognome": "Rosberg","dataNascita": "1985-06-27","luogoNascita": "Wiesbaden, Germania","nazionalita": "DE"},
+  {"id": "lewis_hamilton","nome": "Lewis","cognome": "Hamilton","dataNascita": "1985-01-07","luogoNascita": "Stevenage, UK","nazionalita": "GB"},
+  {"id": "sebastian_vettel","nome": "Sebastian","cognome": "Vettel","dataNascita": "1987-07-03","luogoNascita": "Heppenheim, Germania","nazionalita": "DE"},
+  {"id": "daniel_ricciardo","nome": "Daniel","cognome": "Ricciardo","dataNascita": "1989-07-01","luogoNascita": "Perth, Australia","nazionalita": "AU"},
+  {"id": "max_verstappen","nome": "Max","cognome": "Verstappen","dataNascita": "1997-09-30","luogoNascita": "Hasselt, Belgio","nazionalita": "NL"},
+  {"id": "kimi_raikkonen","nome": "Kimi","cognome": "Räikkönen","dataNascita": "1979-10-17","luogoNascita": "Espoo, Finlandia","nazionalita": "FI"},
+  {"id": "valtteri_bottas","nome": "Valtteri","cognome": "Bottas","dataNascita": "1989-08-28","luogoNascita": "Nastola, Finlandia","nazionalita": "FI"},
+  {"id": "felipe_massa","nome": "Felipe","cognome": "Massa","dataNascita": "1981-04-25","luogoNascita": "Sao Paulo, Brasile","nazionalita": "BR"},
+  {"id": "sergio_perez","nome": "Sergio","cognome": "Pérez","dataNascita": "1990-01-26","luogoNascita": "Guadalajara, Messico","nazionalita": "MX"},
+  {"id": "nico_hulkenberg","nome": "Nico","cognome": "Hülkenberg","dataNascita": "1987-08-19","luogoNascita": "Emmerich am Rhein, Germania","nazionalita": "DE"},
+  {"id": "carlos_sainz","nome": "Carlos","cognome": "Sainz","dataNascita": "1994-09-01","luogoNascita": "Madrid, Spagna","nazionalita": "ES"},
+  {"id": "daniil_kvyat","nome": "Daniil","cognome": "Kvyat","dataNascita": "1994-04-26","luogoNascita": "Ufa, Russia","nazionalita": "RU"},
+  {"id": "fernando_alonso","nome": "Fernando","cognome": "Alonso","dataNascita": "1981-07-29","luogoNascita": "Oviedo, Spagna","nazionalita": "ES"},
+  {"id": "jenson_button","nome": "Jenson","cognome": "Button","dataNascita": "1980-01-19","luogoNascita": "Frome, UK","nazionalita": "GB"},
+  {"id": "romain_grosjean","nome": "Romain","cognome": "Grosjean","dataNascita": "1986-04-17","luogoNascita": "Geneva, Svizzera","nazionalita": "FR"},
+  {"id": "esteban_gutierrez","nome": "Esteban","cognome": "Gutiérrez","dataNascita": "1991-08-05","luogoNascita": "Monterrey, Messico","nazionalita": "MX"},
+  {"id": "kevin_magnussen","nome": "Kevin","cognome": "Magnussen","dataNascita": "1992-10-05","luogoNascita": "Roskilde, Danimarca","nazionalita": "DK"},
+  {"id": "jolyon_palmer","nome": "Jolyon","cognome": "Palmer","dataNascita": "1991-01-20","luogoNascita": "Stevenage, UK","nazionalita": "GB"},
+  {"id": "felipe_nasr","nome": "Felipe","cognome": "Nasr","dataNascita": "1992-08-21","luogoNascita": "Sao Paulo, Brasile","nazionalita": "BR"},
+  {"id": "marcus_ericsson","nome": "Marcus","cognome": "Ericsson","dataNascita": "1990-09-02","luogoNascita": "Täby, Svezia","nazionalita": "SE"},
+  {"id": "pascal_wehrlein","nome": "Pascal","cognome": "Wehrlein","dataNascita": "1994-10-18","luogoNascita": "Stuttgart, Germania","nazionalita": "DE"},
+  {"id": "rio_haryanto","nome": "Rio","cognome": "Haryanto","dataNascita": "1993-01-22","luogoNascita": "Surakarta, Indonesia","nazionalita": "ID"}
 ]

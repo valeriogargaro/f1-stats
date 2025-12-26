@@ -1,0 +1,39 @@
+{
+  "1950-1959": [8, 6, 4, 3, 2],
+  "1960-1990": [9, 6, 4, 3, 2, 1],
+  "1991-2002": [10, 6, 4, 3, 2, 1],
+  "2003-2009": [10, 8, 6, 5, 4, 3, 2, 1],
+  "2010-2018": {
+    "punti": [25, 18, 15, 12, 10, 8, 6, 4, 2, 1],
+    "fastestLap": {
+      "attivo": false
+    },
+    "sprint": {
+      "attivo": false
+    }
+  },
+  "2019-2020": {
+    "punti": [25, 18, 15, 12, 10, 8, 6, 4, 2, 1],
+    "fastestLap": {
+      "attivo": true,
+      "punti": 1,
+      "soloTop10": true
+    },
+    "sprint": {
+      "attivo": false
+    }
+  },
+  "2021-2024": {
+    "punti": [25, 18, 15, 12, 10, 8, 6, 4, 2, 1],
+    "fastestLap": {
+      "attivo": true,
+      "punti": 1,
+      "soloTop10": true
+    },
+    "sprint": {
+      "attivo": true,
+      "punti": [8, 7, 6, 5, 4, 3, 2, 1],
+      "soloTop8": true
+    }
+  }
+}

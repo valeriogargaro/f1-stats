@@ -1,0 +1,13 @@
+[
+  {"id": "mercedes","nome": "Mercedes"},
+  {"id": "ferrari","nome": "Ferrari"},
+  {"id": "redbull","nome": "Red Bull Racing"},
+  {"id": "williams","nome": "Williams"},
+  {"id": "force_india","nome": "Force India"},
+  {"id": "toro_rosso","nome": "Toro Rosso"},
+  {"id": "mclaren","nome": "McLaren"},
+  {"id": "haas","nome": "Haas"},
+  {"id": "renault","nome": "Renault"},
+  {"id": "sauber","nome": "Sauber"},
+  {"id": "manor","nome": "Manor"}
+]

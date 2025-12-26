@@ -1,126 +1,183 @@
-// Funzione per caricare i dati dal JSON
-async function caricaDati() {
-    const response = await fetch('data/champions.json');
-    const data = await response.json();
+// -------------------------
+// FUNZIONI DI CARICAMENTO
+// -------------------------
+async function caricaDati(anno) {
+    const piloti = await fetch("data/piloti.json").then(r => r.json());
+    const team = await fetch("data/team.json").then(r => r.json());
+    const stagioni = await fetch("data/stagioni.json").then(r => r.json());
+    const gare = await fetch(`data/gare/${anno}.json`).then(r => r.json());
 
-    // Popola la tabella dei piloti
-    const tbodyPiloti = document.getElementById("tbody-piloti");
-    tbodyPiloti.innerHTML = "";
-    if (!tbodyPiloti) return;
+    // Calcolo statistiche dinamiche
+    const { statsPiloti, statsTeam } = calcolaStatistiche(gare);
 
-    data.piloti.forEach(p => {
-    const tr = document.createElement("tr");
-    tr.innerHTML = 
-        `<td>${p.anno}</td>
-        <td>
-            <a href="pilota.html?id=${p.pilotaId}">
-                ${p.pilota}
-            </a>
-        </td>
-        <td>${p.team}</td>`;
-    tbodyPiloti.appendChild(tr);
-});
+    // Popola le tabelle
+    generaTabellaPiloti(statsPiloti, piloti, gare);
+    generaTabellaTeam(statsTeam, team, gare);
+    generaClassificaPiloti(statsPiloti, piloti);
+}
 
+// -------------------------
+// CALCOLO STATISTICHE
+// -------------------------
+function calcolaStatistiche(gare) {
+    const statsPiloti = {};
+    const statsTeam = {};
 
-    // Popola la tabella dei team
-    const tbodyTeam = document.getElementById('tbody-team');
-    if (!tbodyTeam) return;
-    data.team.forEach(team => {
-        const tr = document.createElement('tr');
-        tr.innerHTML = `<td>${team.anno}</td><td>${team.team}</td>`;
-        tbodyTeam.appendChild(tr);
+    gare.forEach(gara => {
+        gara.risultati.forEach(r => {
+            // Statistiche pilota
+            if (!statsPiloti[r.pilotaId]) statsPiloti[r.pilotaId] = { gare: 0, vittorie: 0, podi: 0, punti: 0 };
+            statsPiloti[r.pilotaId].gare++;
+            statsPiloti[r.pilotaId].punti += r.punti;
+            if (r.posizione === 1) statsPiloti[r.pilotaId].vittorie++;
+            if (r.posizione <= 3) statsPiloti[r.pilotaId].podi++;
+
+            // Statistiche team
+            if (!statsTeam[r.teamId]) statsTeam[r.teamId] = { gare: 0, vittorie: 0, podi: 0, punti: 0 };
+            statsTeam[r.teamId].gare++;
+            statsTeam[r.teamId].punti += r.punti;
+            if (r.posizione === 1) statsTeam[r.teamId].vittorie++;
+            if (r.posizione <= 3) statsTeam[r.teamId].podi++;
+        });
     });
-    
-    // Popola la classifica piloti
-    const tbodyClassifica = document.getElementById('tbody-classifica');
-    if (!tbodyClassifica) return;
-    data.classifiche.forEach(c => {
-        const tr = document.createElement('tr');
-        tr.innerHTML = `<td>${c.posizione}</td><td>${c.pilota}</td><td>${c.punti}</td>`;
-        tbodyClassifica.appendChild(tr);
+
+    return { statsPiloti, statsTeam };
+}
+
+// -------------------------
+// GENERA TABELLE
+// -------------------------
+function generaTabellaPiloti(statsPiloti, piloti) {
+    const tbody = document.getElementById("tbody-piloti");
+    if (!tbody) return;
+    tbody.innerHTML = "";
+
+    Object.keys(statsPiloti).forEach(id => {
+        const haVinto = statsPiloti[id].vittorie > 0;
+        if (!haVinto) return;
+        const p = piloti.find(pil => pil.id === id);
+        if (!p) return;
+
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+            <td>${statsPiloti[id].gare}</td>
+            <td><a href="pilota.html?id=${id}">${p.nome} ${p.cognome}</a></td>
+            <td>${statsPiloti[id].punti}</td>
+        `;
+        tbody.appendChild(tr);
     });
-};
+}
 
-// Chiama la funzione al caricamento della pagina
-window.addEventListener('DOMContentLoaded', () => {
-    caricaDati();
-});
+function generaTabellaTeam(statsTeam, team) {
+    const tbody = document.getElementById("tbody-team");
+    if (!tbody) return;
+    tbody.innerHTML = "";
 
+    Object.keys(statsTeam).forEach(id => {
+        if (statsTeam[id].vittorie === 0) return;
+        const t = team.find(team => team.id === id);
+        if (!t) return;
+
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+            <td>${t.nome}</td>
+            <td>${statsTeam[id].punti}</td>
+            <td>${statsTeam[id].vittorie}</td>
+        `;
+        tbody.appendChild(tr);
+    });
+}
+
+function generaClassificaPiloti(statsPiloti, piloti) {
+    const tbody = document.getElementById("tbody-classifica");
+    if (!tbody) return;
+    tbody.innerHTML = "";
+
+    const ordinati = Object.keys(statsPiloti).sort((a, b) => statsPiloti[b].punti - statsPiloti[a].punti);
+    ordinati.forEach((id, index) => {
+        const p = piloti.find(pil => pil.id === id);
+        if (!p) return;
+
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+            <td>${index + 1}</td>
+            <td><a href="pilota.html?id=${id}">${p.nome} ${p.cognome}</a></td>
+            <td>${statsPiloti[id].punti}</td>
+        `;
+        tbody.appendChild(tr);
+    });
+}
+
+// -------------------------
+// ORDINAMENTO TABELLE
+// -------------------------
 function ordinaTabella(tabellaId, colonnaIndex) {
     const table = document.getElementById(tabellaId);
+    if (!table) return;
+
     let switching = true;
     let dir = "asc";
-    
+
     while (switching) {
         switching = false;
         const rows = table.rows;
         for (let i = 1; i < rows.length - 1; i++) {
             let shouldSwitch = false;
-            let x = rows[i].getElementsByTagName("TD")[colonnaIndex];
-            let y = rows[i + 1].getElementsByTagName("TD")[colonnaIndex];
-            
-            if (dir === "asc") {
-                if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-                    shouldSwitch = true;
-                    break;
-                }
-            } else if (dir === "desc") {
-                if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-                    shouldSwitch = true;
-                    break;
-                }
+            const x = rows[i].getElementsByTagName("TD")[colonnaIndex];
+            const y = rows[i + 1].getElementsByTagName("TD")[colonnaIndex];
+
+            if (dir === "asc" && x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) shouldSwitch = true;
+            if (dir === "desc" && x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) shouldSwitch = true;
+
+            if (shouldSwitch) {
+                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                switching = true;
+                break;
             }
         }
-        if (shouldSwitch) {
-            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-            switching = true;
-        } else if (dir === "asc") {
+        if (!switching && dir === "asc") {
             dir = "desc";
             switching = true;
         }
     }
 }
 
+// -------------------------
+// FILTRO PILOTA
+// -------------------------
 function filtraPilota() {
-    const input = document.getElementById("filtro-pilota"); // input
+    const input = document.getElementById("filtro-pilota");
+    if (!input) return;
     const filter = input.value.toUpperCase();
-    const table = document.getElementById("tbody-piloti"); // tbody
-    const rows = table.getElementsByTagName("tr");
+    const table = document.getElementById("tbody-piloti");
+    if (!table) return;
 
+    const rows = table.getElementsByTagName("tr");
     for (let i = 0; i < rows.length; i++) {
-        const td = rows[i].getElementsByTagName("td")[1]; // colonna pilota
+        const td = rows[i].getElementsByTagName("td")[1];
         if (td) {
-            const txtValue = td.textContent || td.innerText;
-            rows[i].style.display = txtValue.toUpperCase().includes(filter) ? "" : "none";
+            const txt = td.textContent || td.innerText;
+            rows[i].style.display = txt.toUpperCase().includes(filter) ? "" : "none";
         }
     }
 }
 
-fetch('data/stats_piloti.json')
-  .then(response => response.json())
-  .then(stats => {
-    const tbody = document.getElementById('tbody-stats-piloti');
-    if (!tbody) return;
-
-    stats.forEach(p => {
-      const tr = document.createElement('tr');
-      tr.innerHTML = `
-        <td>${p.nome}</td>
-        <td>${p.titoli}</td>
-        <td>${p.vittorie}</td>
-        <td>${p.podi}</td>
-        <td>${p.pole}</td>
-      `;
-      tbody.appendChild(tr);
-    
-    const pilotaPiuVincente = stats.reduce((max, p) =>
-    p.vittorie > max.vittorie ? p : max
-    );
-
-    document.getElementById("record-vittorie").innerText =
-        `Pilota più vincente: ${pilotaPiuVincente.nome} (${pilotaPiuVincente.vittorie} vittorie)`;
-
-
-    console.log("Pilota più vincente:", pilotaPiuVincente.nome);
+// -------------------------
+// SELEZIONE ANNO DINAMICA
+// -------------------------
+const selectAnno = document.getElementById("select-anno");
+if (selectAnno) {
+    selectAnno.addEventListener("change", () => {
+        const anno = selectAnno.value;
+        caricaDati(anno);
     });
-  });
+}
+
+// -------------------------
+// EVENT LISTENER
+// -------------------------
+window.addEventListener("DOMContentLoaded", () => {
+    // Carica anno di default o primo disponibile
+    const annoDefault = selectAnno ? selectAnno.value : 2016;
+    caricaDati(annoDefault);
+});
