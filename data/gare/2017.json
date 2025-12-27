@@ -1,0 +1,21 @@
+[
+  {
+    "id": "australia_2017",
+    "nome": "Gran Premio d’Australia",
+    "stagione": 2017,
+    "data": "2017-03-26",
+    "circuitoId": "melbourne",
+    "risultati": [
+      { "pilotaId": "sebastian_vettel", "teamId": "ferrari", "posizione": 1 },
+      { "pilotaId": "lewis_hamilton", "teamId": "mercedes", "posizione": 2 },
+      { "pilotaId": "valtteri_bottas", "teamId": "mercedes", "posizione": 3 },
+      { "pilotaId": "kimi_raikkonen", "teamId": "ferrari", "posizione": 4 },
+      { "pilotaId": "max_verstappen", "teamId": "redbull", "posizione": 5 },
+      { "pilotaId": "daniel_ricciardo", "teamId": "redbull", "posizione": 6 },
+      { "pilotaId": "felipe_massa", "teamId": "williams", "posizione": 7 },
+      { "pilotaId": "sergio_perez", "teamId": "force_india", "posizione": 8 },
+      { "pilotaId": "esteban_ocon", "teamId": "force_india", "posizione": 9 },
+      { "pilotaId": "nico_hulkenberg", "teamId": "renault", "posizione": 10 }
+    ]
+  }
+]

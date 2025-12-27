@@ -1,3 +1,6 @@
+let anniDisponibili = [];
+let annoCorrente = null;
+
 // -------------------------
 // FUNZIONI DI CARICAMENTO
 // -------------------------
@@ -176,8 +179,44 @@ if (selectAnno) {
 // -------------------------
 // EVENT LISTENER
 // -------------------------
-window.addEventListener("DOMContentLoaded", () => {
-    // Carica anno di default o primo disponibile
-    const annoDefault = selectAnno ? selectAnno.value : 2016;
-    caricaDati(annoDefault);
+window.addEventListener("DOMContentLoaded", async () => {
+    const stagioni = await fetch("data/stagioni.json").then(r => r.json());
+
+    anniDisponibili = stagioni
+        .map(s => s.anno)
+        .sort((a, b) => a - b);
+
+    // ✅ ultimo anno disponibile
+    annoCorrente = anniDisponibili[anniDisponibili.length - 1];
+
+    aggiornaTitoloClassifica();
+
+    // per ora carichi solo l’anno corretto
+    caricaDati(annoCorrente);
+});
+
+function aggiornaTitoloClassifica() {
+    const titolo = document.getElementById("titolo-classifica");
+    if (!titolo) return;
+
+    titolo.innerText = `Classifica piloti (${annoCorrente})`;
+}
+
+function cambiaAnno(delta) {
+    const index = anniDisponibili.indexOf(annoCorrente);
+    const nuovoIndex = index + delta;
+
+    if (nuovoIndex < 0 || nuovoIndex >= anniDisponibili.length) return;
+
+    annoCorrente = anniDisponibili[nuovoIndex];
+    aggiornaTitoloClassifica();
+    caricaDati(annoCorrente);
+}
+
+document.getElementById("anno-prev")?.addEventListener("click", () => {
+    cambiaAnno(-1);
+});
+
+document.getElementById("anno-next")?.addEventListener("click", () => {
+    cambiaAnno(1);
 });
