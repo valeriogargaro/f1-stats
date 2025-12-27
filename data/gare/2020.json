@@ -1,0 +1,14 @@
+[
+  {
+    "id": "austria_2020",
+    "nome": "Gran Premio d’Austria",
+    "stagione": 2020,
+    "data": "2020-07-05",
+    "circuitoId": "spielberg",
+    "risultati": [
+      {"pilotaId": "valtteri_bottas","teamId": "mercedes","posizione": 1,"fastestLap": true},
+      { "pilotaId": "charles_leclerc", "teamId": "ferrari", "posizione": 2 },
+      { "pilotaId": "lando_norris", "teamId": "mclaren", "posizione": 3 }
+    ]
+  }
+]

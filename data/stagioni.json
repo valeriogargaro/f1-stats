@@ -1,18 +1,12 @@
 [
-    {
-      "anno": 2016,
-      "gare": [
-        "australia_2016",
-        "bahrain_2016",
-        "monza_2016"
-      ]
-    },
-    {
-      "anno": 2017,
-      "gare": [
-        "australia_2017",
-        "bahrain_2017",
-        "monza_2017"
-      ]
-    }
+  { "anno": 2016 },
+  { "anno": 2017 },
+  { "anno": 2018 },
+  { "anno": 2019 },
+  { "anno": 2020 },
+  { "anno": 2021 },
+  { "anno": 2022 },
+  { "anno": 2023 },
+  { "anno": 2024 },
+  { "anno": 2025 }
 ]

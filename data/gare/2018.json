@@ -1,0 +1,16 @@
+[
+  {
+    "id": "australia_2018",
+    "nome": "Gran Premio d’Australia",
+    "stagione": 2018,
+    "data": "2018-03-25",
+    "circuitoId": "melbourne",
+    "risultati": [
+      { "pilotaId": "sebastian_vettel", "teamId": "ferrari", "posizione": 1 },
+      { "pilotaId": "lewis_hamilton", "teamId": "mercedes", "posizione": 2 },
+      { "pilotaId": "kimi_raikkonen", "teamId": "ferrari", "posizione": 3 },
+      { "pilotaId": "valtteri_bottas", "teamId": "mercedes", "posizione": 4 },
+      { "pilotaId": "max_verstappen", "teamId": "redbull", "posizione": 5 }
+    ]
+  }
+]

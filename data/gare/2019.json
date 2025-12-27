@@ -1,0 +1,16 @@
+[
+  {
+    "id": "australia_2019",
+    "nome": "Gran Premio d’Australia",
+    "stagione": 2019,
+    "data": "2019-03-17",
+    "circuitoId": "melbourne",
+    "risultati": [
+      {"pilotaId": "valtteri_bottas","teamId": "mercedes","posizione": 1,"fastestLap": true},
+      { "pilotaId": "lewis_hamilton", "teamId": "mercedes", "posizione": 2 },
+      { "pilotaId": "max_verstappen", "teamId": "redbull", "posizione": 3 },
+      { "pilotaId": "sebastian_vettel", "teamId": "ferrari", "posizione": 4 },
+      { "pilotaId": "charles_leclerc", "teamId": "ferrari", "posizione": 5 }
+    ]
+  }
+]

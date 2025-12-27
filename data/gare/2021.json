@@ -1,0 +1,22 @@
+{
+  "id": "silverstone_2021",
+  "nome": "Gran Premio di Gran Bretagna",
+  "stagione": 2021,
+  "data": "2021-07-18",
+  "circuitoId": "silverstone",
+  "gara": {
+    "risultati": [
+      { "pilotaId": "lewis_hamilton", "teamId": "mercedes", "posizione": 1 },
+      { "pilotaId": "charles_leclerc", "teamId": "ferrari", "posizione": 2 },
+      { "pilotaId": "valtteri_bottas", "teamId": "mercedes", "posizione": 3 }
+    ]
+  },
+  "sprint": {
+    "attiva": true,
+    "risultati": [
+      { "pilotaId": "valtteri_bottas", "teamId": "mercedes", "posizione": 1 },
+      { "pilotaId": "max_verstappen", "teamId": "redbull", "posizione": 2 },
+      { "pilotaId": "lewis_hamilton", "teamId": "mercedes", "posizione": 3 }
+    ]
+  }
+}

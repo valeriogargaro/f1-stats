@@ -9,9 +9,10 @@ async function caricaDati(anno) {
     const team = await fetch("data/team.json").then(r => r.json());
     const stagioni = await fetch("data/stagioni.json").then(r => r.json());
     const gare = await fetch(`data/gare/${anno}.json`).then(r => r.json());
+    
 
     // Calcolo statistiche dinamiche
-    const { statsPiloti, statsTeam } = calcolaStatistiche(gare);
+    const { statsPiloti, statsTeam } = await calcolaStatistiche(gare);
 
     // Popola le tabelle
     generaTabellaPiloti(statsPiloti, piloti, gare);
@@ -22,27 +23,59 @@ async function caricaDati(anno) {
 // -------------------------
 // CALCOLO STATISTICHE
 // -------------------------
-function calcolaStatistiche(gare) {
+async function calcolaStatistiche(gare) {
     const statsPiloti = {};
     const statsTeam = {};
 
-    gare.forEach(gara => {
-        gara.risultati.forEach(r => {
-            // Statistiche pilota
-            if (!statsPiloti[r.pilotaId]) statsPiloti[r.pilotaId] = { gare: 0, vittorie: 0, podi: 0, punti: 0 };
-            statsPiloti[r.pilotaId].gare++;
-            statsPiloti[r.pilotaId].punti += r.punti;
-            if (r.posizione === 1) statsPiloti[r.pilotaId].vittorie++;
-            if (r.posizione <= 3) statsPiloti[r.pilotaId].podi++;
+    for (const gara of gare) {
+        const regolamento = await getRegolamentoPerAnno(gara.stagione);
 
-            // Statistiche team
-            if (!statsTeam[r.teamId]) statsTeam[r.teamId] = { gare: 0, vittorie: 0, podi: 0, punti: 0 };
+        // ---------- SPRINT ----------
+        if (gara.sprint && regolamento.sprint?.attivo) {
+            gara.sprint.forEach(r => {
+                if (!statsPiloti[r.pilotaId]) {
+                    statsPiloti[r.pilotaId] = { gare:0, vittorie:0, podi:0, punti:0 };
+                }
+                if (!statsTeam[r.teamId]) {
+                    statsTeam[r.teamId] = { gare:0, vittorie:0, podi:0, punti:0 };
+                }
+
+                const puntiSprint = calcolaPuntiSprint(r.posizione, regolamento);
+                statsPiloti[r.pilotaId].punti += puntiSprint;
+                statsTeam[r.teamId].punti += puntiSprint;
+            });
+        }
+
+        // ---------- GARA PRINCIPALE ----------
+        gara.risultati.forEach(r => {
+            if (!statsPiloti[r.pilotaId]) {
+                statsPiloti[r.pilotaId] = { gare:0, vittorie:0, podi:0, punti:0 };
+            }
+            if (!statsTeam[r.teamId]) {
+                statsTeam[r.teamId] = { gare:0, vittorie:0, podi:0, punti:0 };
+            }
+
+            statsPiloti[r.pilotaId].gare++;
             statsTeam[r.teamId].gare++;
-            statsTeam[r.teamId].punti += r.punti;
-            if (r.posizione === 1) statsTeam[r.teamId].vittorie++;
-            if (r.posizione <= 3) statsTeam[r.teamId].podi++;
+
+            const puntiGP = calcolaPuntiGP(r.posizione, regolamento);
+            const puntiFL = calcolaFastestLap(r, regolamento);
+
+            const puntiTotali = puntiGP + puntiFL;
+
+            statsPiloti[r.pilotaId].punti += puntiTotali;
+            statsTeam[r.teamId].punti += puntiTotali;
+
+            if (r.posizione === 1) {
+                statsPiloti[r.pilotaId].vittorie++;
+                statsTeam[r.teamId].vittorie++;
+            }
+            if (r.posizione <= 3) {
+                statsPiloti[r.pilotaId].podi++;
+                statsTeam[r.teamId].podi++;
+            }
         });
-    });
+    }
 
     return { statsPiloti, statsTeam };
 }
@@ -193,6 +226,7 @@ window.addEventListener("DOMContentLoaded", async () => {
 
     // per ora carichi solo l’anno corretto
     caricaDati(annoCorrente);
+    aggiornaFrecce();
 });
 
 function aggiornaTitoloClassifica() {
@@ -201,6 +235,19 @@ function aggiornaTitoloClassifica() {
 
     titolo.innerText = `Classifica piloti (${annoCorrente})`;
 }
+
+function aggiornaFrecce() {
+    const prevBtn = document.getElementById("anno-prev");
+    const nextBtn = document.getElementById("anno-next");
+
+    if (!prevBtn || !nextBtn) return;
+
+    const minAnno = Math.min(...anniDisponibili);
+    const maxAnno = Math.max(...anniDisponibili);
+
+    prevBtn.style.visibility = annoCorrente === minAnno ? "hidden" : "visible";
+    nextBtn.style.visibility = annoCorrente === maxAnno ? "hidden" : "visible";
+};
 
 function cambiaAnno(delta) {
     const index = anniDisponibili.indexOf(annoCorrente);
@@ -211,6 +258,7 @@ function cambiaAnno(delta) {
     annoCorrente = anniDisponibili[nuovoIndex];
     aggiornaTitoloClassifica();
     caricaDati(annoCorrente);
+    aggiornaFrecce();
 }
 
 document.getElementById("anno-prev")?.addEventListener("click", () => {
@@ -220,3 +268,69 @@ document.getElementById("anno-prev")?.addEventListener("click", () => {
 document.getElementById("anno-next")?.addEventListener("click", () => {
     cambiaAnno(1);
 });
+
+async function getRegolamentoPerAnno(anno) {
+    const regolamenti = await fetch("data/regolamenti.json").then(r => r.json());
+
+    for (const periodo in regolamenti) {
+        if (periodo.includes("-")) {
+            const [inizio, fine] = periodo.split("-").map(Number);
+            if (anno >= inizio && anno <= fine) return regolamenti[periodo];
+        } else {
+            if (Number(periodo) === anno) return regolamenti[periodo];
+        }
+    }
+    return null;
+}
+
+function calcolaPuntiGP(posizione, regolamento) {
+    if (!regolamento.punti) return 0;
+    return regolamento.punti[posizione - 1] || 0;
+}
+
+function calcolaPuntiSprint(posizione, regolamento) {
+    if (!regolamento.sprint?.attivo) return 0;
+    return regolamento.sprint.punti[posizione - 1] || 0;
+}
+
+function calcolaFastestLap(risultato, regolamento) {
+    if (!regolamento.fastestLap?.attivo) return 0;
+    if (!risultato.fastestLap) return 0;
+
+    if (
+        regolamento.fastestLap.soloTop10 &&
+        risultato.posizione > 10
+    ) return 0;
+
+    return regolamento.fastestLap.punti;
+}
+
+function ordinaClassifica(stats) {
+    return Object.entries(stats)
+        .map(([id, data]) => ({ id, ...data }))
+        .sort((a, b) => b.punti - a.punti);
+}
+
+async function calcolaAlboDOro(stagioni) {
+    const alboOroPiloti = {};
+    const alboOroTeam = {};
+
+    for (const stagione of stagioni) {
+        const gare = await fetch(`data/${stagione.anno}.json`).then(r => r.json());
+
+        const { statsPiloti, statsTeam } = await calcolaStatistiche(gare);
+
+        const classificaPiloti = ordinaClassifica(statsPiloti);
+        const classificaTeam = ordinaClassifica(statsTeam);
+
+        if (classificaPiloti.length > 0) {
+            alboOroPiloti[stagione.anno] = classificaPiloti[0].id;
+        }
+
+        if (classificaTeam.length > 0) {
+            alboOroTeam[stagione.anno] = classificaTeam[0].id;
+        }
+    }
+
+    return { alboOroPiloti, alboOroTeam };
+}
