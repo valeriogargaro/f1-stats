@@ -13,88 +13,86 @@
         Qui troverai statistiche, classifiche e informazioni sui piloti e team di Formula 1.
     </p>
 
-<!-- Tendina lingua in alto a destra -->
-<div class="language-selector">
-  <select id="lang-select">
-    <option value="it">Italiano</option>
-    <option value="en">English</option>
-    <option value="es">Español</option>
-    <option value="fr">Français</option>
-    <option value="de">Deutsch</option>
-    <option value="pt">Português</option>
-    <option value="nl">Dutch</option>
-  </select>
-</div>
+    <!-- Tendina lingua in alto a destra -->
+    <div class="language-selector">
+      <select id="lang-select">
+        <option value="it">Italiano</option>
+        <option value="en">English</option>
+        <option value="es">Español</option>
+        <option value="fr">Français</option>
+        <option value="de">Deutsch</option>
+        <option value="pt">Português</option>
+        <option value="nl">Dutch</option>
+      </select>
+    </div>
 
-<!-- Filtro pilota centrato sopra le tabelle -->
-<div class="filtro">
-    <input type="text" id="filtro-pilota" placeholder="Filtra per pilota..." onkeyup="filtraPilota()">
-</div>
+    <!-- Filtro pilota centrato sopra le tabelle -->
+    <div class="filtro">
+        <input type="text" id="filtro-pilota" placeholder="Filtra per pilota..." onkeyup="filtraPilota()">
+    </div>
 
-<!-- Contenitore tabelle affiancate: Albo d'Oro Piloti e Team -->
-<div class="albo-d-oro-container">
-    <!-- Albo d'Oro Piloti -->
+    <!-- Contenitore tabelle affiancate: Albo d'Oro Piloti e Team -->
+    <div class="albo-d-oro-container">
+        <!-- Albo d'Oro Piloti -->
+        <div class="tabella">
+            <h2 id="albo-piloti-h2">Albo d’Oro Piloti</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Anno</th>
+                        <th>Pilota</th>
+                        <th>Team</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody-albo-piloti">
+                    <!-- dati caricati da JS -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Albo d'Oro Team -->
+        <div class="tabella">
+            <h2 id="albo-team-h2">Albo d’Oro Team</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Anno</th>
+                        <th>Team</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody-albo-team">
+                    <!-- dati caricati da JS -->
+                </tbody>
+            </table>
+        </div>
+    </div> <!-- chiusura albo-d-oro-container -->
+
+    <!-- Classifica Piloti -->
     <div class="tabella">
-        <h2 id="albo-piloti-h2">Albo d’Oro Piloti</h2>
+        <h2 class="titolo-classifica">
+            <button id="anno-prev">◀</button>
+            <span id="titolo-classifica">Classifica piloti</span>
+            <button id="anno-next">▶</button>
+        </h2>
         <table>
             <thead>
                 <tr>
-                    <th onclick="ordinaTabella('tbody-piloti', 0)">Anno</th>
-                    <th onclick="ordinaTabella('tbody-piloti', 1)">Pilota</th>
-                    <th onclick="ordinaTabella('tbody-piloti', 2)">Team</th>
+                    <th>Posizione</th>
+                    <th>Pilota</th>
+                    <th>Punti</th>
                 </tr>
             </thead>
-            <tbody id="tbody-piloti">
+            <tbody id="tbody-classifica">
                 <!-- dati caricati da JS -->
             </tbody>
         </table>
     </div>
 
-    <!-- Albo d'Oro Team -->
-    <div class="tabella">
-        <h2 id="albo-team-h2">Albo d’Oro Team</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th onclick="ordinaTabella('tbody-team', 0)">Anno</th>
-                    <th onclick="ordinaTabella('tbody-team', 1)">Team</th>
-                </tr>
-            </thead>
-            <tbody id="tbody-team">
-                <!-- dati caricati da JS -->
-            </tbody>
-        </table>
-    </div>
-</div> <!-- chiusura albo-d-oro-container -->
+    <a id="stats-link" href="stats.html">
+      Vai alle statistiche F1 →
+    </a>
 
-<!-- Classifica Piloti 2023 -->
-<div class="tabella">
-    <h2 class="titolo-classifica">
-        <button id="anno-prev">◀</button>
-        <span id="titolo-classifica">Classifica piloti</span>
-        <button id="anno-next">▶</button>
-    </h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Posizione</th>
-                <th>Pilota</th>
-                <th>Punti</th>
-            </tr>
-        </thead>
-        <tbody id="tbody-classifica">
-            <!-- dati caricati da JS -->
-        </tbody>
-    </table>
-</div>
-
-<a id="stats-link" href="stats.html">
-  Vai alle statistiche F1 →
-</a>
-
-<script src="script.js" defer></script>
-<script src="lang.js" defer></script>
-
-
+    <script src="script.js" defer></script>
+    <script src="lang.js" defer></script>
 </body>
 </html>

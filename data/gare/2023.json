@@ -1,0 +1,14 @@
+[
+  {
+    "stagione": 2023,
+    "risultati": [
+      {"pilotaId": "p1", "teamId": "t1", "posizione": 1},
+      {"pilotaId": "p2", "teamId": "t2", "posizione": 2},
+      {"pilotaId": "p3", "teamId": "t1", "posizione": 3}
+    ],
+    "sprint": [
+      {"pilotaId": "p2", "teamId": "t2", "posizione": 1},
+      {"pilotaId": "p1", "teamId": "t1", "posizione": 2}
+    ]
+  }
+]
