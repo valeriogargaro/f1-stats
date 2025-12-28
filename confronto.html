@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confronto Piloti - F1 Stats</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- chartjs-plugin-annotation -->
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.4.0"></script>
+
+    <!-- Script confronto -->
+    <script src="confronto.js" defer></script>
+</head>
+
+<body>
+
+    <h1>Confronto Piloti</h1>
+
+    <!-- SELEZIONE PILOTI -->
+    <section class="confronto-selezione">
+
+        <!-- PILOTA A -->
+        <div class="pilota-box">
+            <h2>Pilota A</h2>
+
+            <div class="autocomplete">
+                <input
+                    type="text"
+                    id="pilotaA-input"
+                    placeholder="Cerca pilota..."
+                    autocomplete="off"
+                />
+                <ul id="pilotaA-suggestions" class="suggestions"></ul>
+            </div>
+
+            <div class="anni-box">
+                <label>Dal</label>
+                <select id="annoA-start"></select>
+
+                <label>Al</label>
+                <select id="annoA-end"></select>
+            </div>
+
+        </div>
+
+        <!-- PILOTA B -->
+        <div class="pilota-box">
+            <h2>Pilota B</h2>
+
+            <div class="autocomplete">
+                <input
+                    type="text"
+                    id="pilotaB-input"
+                    placeholder="Cerca pilota..."
+                    autocomplete="off"
+                />
+                <ul id="pilotaB-suggestions" class="suggestions"></ul>
+            </div>
+
+            <div class="anni-box">
+                <label>Dal</label>
+                <select id="annoB-start"></select>
+                
+                <label>Al</label>
+                <select id="annoB-end"></select>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- GRAFICO CONFRONTO -->
+    <section class="grafico-container">
+        <canvas id="graficoConfronto"></canvas>
+    </section>
+
+</body>
+</html>
